@@ -1,0 +1,57 @@
+<view class="container">
+  <!-- 头部 -->
+  <view class="header">
+    <view class="header-content">
+      <image class="avatar" src="/images/rouone.png" mode="aspectFill"></image>
+      <view class="info">
+        <text class="name">柔柔熊</text>
+        <text class="status">在线陪伴中...</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 聊天区域 -->
+  <scroll-view class="chat-area" scroll-y scroll-top="{{scrollTop}}">
+    <view class="messages">
+      <block wx:for="{{messages}}" wx:key="id">
+        <view class="message {{item.role}}">
+          <view class="msg-avatar">
+            <image wx:if="{{item.role === 'assistant'}}" src="/images/rourou-avatar.png" mode="aspectFill"></image>
+            <text wx:else>👤</text>
+          </view>
+          <view class="bubble">
+            <text class="text">{{item.content}}</text>
+          </view>
+        </view>
+      </block>
+      
+      <view wx:if="{{isLoading}}" class="message assistant loading">
+        <view class="msg-avatar">
+          <image src="/images/rourou-avatar.png" mode="aspectFill"></image>
+        </view>
+        <view class="bubble">
+          <text class="text">正在思考中...</text>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+
+  <!-- 输入区域 -->
+  <view class="input-area">
+    <textarea 
+      class="input" 
+      placeholder="说说你的想法..." 
+      bindinput="onInput"
+      value="{{inputMessage}}"
+      disabled="{{isLoading}}"
+      maxlength="200"
+    ></textarea>
+    <button 
+      class="send-btn" 
+      bindtap="sendMessage"
+      disabled="{{!inputMessage || isLoading}}"
+    >
+      <text>发送</text>
+    </button>
+  </view>
+</view>

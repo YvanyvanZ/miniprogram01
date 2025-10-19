@@ -1,0 +1,145 @@
+/* pages/my-notes/index.wxss */
+.container {
+  height: 100vh;
+  background: #f5f5f5;
+}
+
+/* 自定义头部 */
+.custom-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 30rpx;
+  background: white;
+  border-bottom: 1rpx solid #e0e0e0;
+}
+
+.back-btn {
+  padding: 15rpx 0;
+  font-size: 28rpx;
+  color: #333;
+}
+
+.header-title {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+/* 滚动区域 */
+.notes-scroll {
+  background: #f5f5f5;
+}
+
+/* 加载状态 */
+.loading-state {
+  text-align: center;
+  padding: 100rpx 0;
+  color: #999;
+  font-size: 28rpx;
+}
+
+/* 空状态 */
+.empty-state {
+  text-align: center;
+  padding: 200rpx 0;
+}
+
+.empty-text {
+  display: block;
+  font-size: 32rpx;
+  color: #999;
+  margin-bottom: 20rpx;
+}
+
+.empty-tip {
+  font-size: 28rpx;
+  color: #ccc;
+}
+
+/* 笔记列表 */
+.notes-list {
+  padding: 30rpx;
+}
+
+.note-item {
+  background: white;
+  border-radius: 16rpx;
+  padding: 30rpx;
+  margin-bottom: 20rpx;
+  box-shadow: 0 2rpx 12rpx rgba(0,0,0,0.1);
+}
+
+.note-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20rpx;
+}
+
+.note-date {
+  font-size: 28rpx;
+  color: #333;
+  font-weight: bold;
+}
+
+.note-ganzhi {
+  font-size: 26rpx;
+  color: #666;
+}
+
+.note-content-preview {
+  margin-bottom: 20rpx;
+}
+
+.content-text {
+  font-size: 30rpx;
+  color: #333;
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+}
+
+.note-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15rpx;
+  margin-bottom: 15rpx;
+}
+
+.tag {
+  font-size: 24rpx;
+  color: #4CAF50;
+  background: #f0f9f0;
+  padding: 8rpx 16rpx;
+  border-radius: 12rpx;
+}
+
+.note-time {
+  font-size: 24rpx;
+  color: #999;
+  text-align: right;
+}
+
+/* 添加按钮 */
+.add-btn {
+  position: fixed;
+  right: 40rpx;
+  bottom: 40rpx;
+  width: 120rpx;
+  height: 120rpx;
+  background: #4CAF50;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4rpx 20rpx rgba(76, 175, 80, 0.3);
+  z-index: 100;
+}
+
+.add-btn text {
+  font-size: 48rpx;
+  color: white;
+  font-weight: bold;
+}

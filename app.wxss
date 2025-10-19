@@ -1,0 +1,42 @@
+/* app.wxss */
+.navbar-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: #0a0a1a;
+  z-index: 9999;
+}
+
+.navbar-content {
+  display: flex;
+  align-items: center;
+  height: 44px;
+  padding: 20px 15px 0 15px;
+  position: relative;
+}
+
+.navbar-back {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 18px;
+}
+
+.navbar-title {
+  position: absolute;
+  left: 0;
+  right: 0;
+  text-align: center;
+  color: white;
+  font-size: 17px;
+  font-weight: 500;
+}
+
+/* 导航栏占位符 - 重要！ */
+.navbar-placeholder {
+  height: 64px; /* 44px导航栏 + 20px状态栏 */
+}

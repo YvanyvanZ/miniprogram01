@@ -1,0 +1,361 @@
+/* 登录注册页面样式 */
+.container {
+  height: 100vh;
+  background-color: #f7fafc;
+}
+
+/* 自定义导航栏 */
+.header {
+  padding: 32rpx 48rpx 24rpx;
+  background-color: rgba(255, 255, 255, 0.95);
+  border-bottom: 2rpx solid #e2e8f0;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.05);
+}
+
+.headerTitle {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #1a202c;
+  text-align: center;
+}
+
+/* 滚动区域 */
+.scrollView {
+  height: calc(100vh - 120rpx);
+}
+
+.scrollContent {
+  padding: 0 48rpx 120rpx;
+}
+
+/* Logo区域 */
+.logoSection {
+  align-items: center;
+  margin-bottom: 96rpx;
+  padding-top: 64rpx;
+}
+
+.logoContainer {
+  margin-bottom: 48rpx;
+}
+
+.logoGradient {
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 48rpx;
+  background: linear-gradient(135deg, #1a202c, #2d3748);
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8rpx 30rpx rgba(26, 32, 44, 0.2);
+}
+
+.logoText {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+.welcomeTitle {
+  font-size: 48rpx;
+  font-weight: bold;
+  color: #1a202c;
+  margin-bottom: 16rpx;
+  text-align: center;
+}
+
+.welcomeSubtitle {
+  font-size: 32rpx;
+  color: #4a5568;
+  text-align: center;
+}
+
+/* 认证表单区域 */
+.authFormSection {
+  background-color: #ffffff;
+  border-radius: 48rpx;
+  padding: 48rpx;
+  margin-bottom: 64rpx;
+  box-shadow: 0 8rpx 40rpx rgba(0, 0, 0, 0.08);
+}
+
+/* 模式切换Tab */
+.modeTabs {
+  flex-direction: row;
+  background-color: #f7fafc;
+  border-radius: 32rpx;
+  padding: 8rpx;
+  margin-bottom: 64rpx;
+}
+
+.tabButton {
+  flex: 1;
+  padding: 24rpx 32rpx;
+  border-radius: 24rpx;
+  align-items: center;
+  justify-content: center;
+}
+
+.tabActive {
+  background-color: #1a202c;
+  box-shadow: 0 8rpx 28rpx rgba(26, 32, 44, 0.2);
+}
+
+.tabInactive {
+  background-color: rgba(255, 255, 255, 0.9);
+  border: 2rpx solid rgba(26, 32, 44, 0.1);
+}
+
+.tabText {
+  font-size: 32rpx;
+  font-weight: 600;
+}
+
+.tabTextActive {
+  color: #ffffff;
+}
+
+.tabTextInactive {
+  color: #6b7280;
+}
+
+/* 消息提示 */
+.messageContainer {
+  flex-direction: row;
+  align-items: center;
+  padding: 32rpx;
+  border-radius: 24rpx;
+  margin-bottom: 48rpx;
+}
+
+.errorMessage {
+  background-color: rgba(74, 85, 102, 0.05);
+  border-left: 8rpx solid #4a5568;
+}
+
+.successMessage {
+  background-color: rgba(45, 55, 72, 0.05);
+  border-left: 8rpx solid #2d3748;
+}
+
+.messageText {
+  font-size: 28rpx;
+  font-weight: 500;
+  flex: 1;
+}
+
+.errorText {
+  color: #4a5568;
+}
+
+.successText {
+  color: #2d3748;
+}
+
+.icon {
+  margin-right: 16rpx;
+  font-size: 32rpx;
+}
+
+/* 微信登录 */
+.wechatLoginSection {
+  margin-bottom: 48rpx;
+}
+
+.wechatLoginButton {
+  background: linear-gradient(135deg, #07c160, #09ed7a);
+  border-radius: 32rpx;
+  padding: 28rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+}
+
+.wechatLoginButton::after {
+  border: none;
+}
+
+.wechatIcon {
+  font-size: 40rpx;
+  margin-right: 16rpx;
+}
+
+.wechatLoginText {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.divider {
+  flex-direction: row;
+  align-items: center;
+  margin: 48rpx 0;
+}
+
+.divider::before,
+.divider::after {
+  content: '';
+  flex: 1;
+  height: 2rpx;
+  background-color: #e2e8f0;
+}
+
+.dividerText {
+  padding: 0 32rpx;
+  font-size: 28rpx;
+  color: #9ca3af;
+}
+
+/* 表单容器 */
+.formContainer {
+  gap: 48rpx;
+}
+
+.inputGroup {
+  gap: 16rpx;
+}
+
+.inputLabel {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #1a202c;
+}
+
+.inputWrapper {
+  flex-direction: row;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.9);
+  border: 2rpx solid rgba(26, 32, 44, 0.1);
+  border-radius: 32rpx;
+  padding: 0 32rpx;
+  height: 112rpx;
+}
+
+.textInput {
+  flex: 1;
+  font-size: 32rpx;
+  color: #1a202c;
+  height: 100%;
+  margin-left: 24rpx;
+}
+
+.placeholder {
+  color: #9ca3af;
+}
+
+.passwordToggleButton {
+  padding: 0 24rpx;
+}
+
+/* 验证码输入 */
+.verificationInputWrapper {
+  flex-direction: row;
+  gap: 24rpx;
+}
+
+.verificationInputContainer {
+  flex: 1;
+  flex-direction: row;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.9);
+  border: 2rpx solid rgba(26, 32, 44, 0.1);
+  border-radius: 32rpx;
+  padding: 0 32rpx;
+  height: 112rpx;
+}
+
+.getCodeButton {
+  border-radius: 32rpx;
+  overflow: hidden;
+  min-width: 240rpx;
+}
+
+.getCodeButtonDisabled {
+  opacity: 0.5;
+}
+
+.getCodeButtonText {
+  background: linear-gradient(135deg, #2d3748, #4a5568);
+  padding: 28rpx 32rpx;
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #ffffff;
+  text-align: center;
+  border-radius: 32rpx;
+}
+
+/* 忘记密码 */
+.forgotPasswordSection {
+  align-items: flex-end;
+}
+
+.forgotPasswordText {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #1a202c;
+}
+
+/* 提交按钮 */
+.submitButton {
+  border-radius: 32rpx;
+  overflow: hidden;
+  margin-top: 16rpx;
+}
+
+.submitButtonDisabled {
+  opacity: 0.7;
+}
+
+.submitButtonText {
+  background: linear-gradient(135deg, #1a202c, #2d3748);
+  padding: 28rpx;
+  font-size: 36rpx;
+  font-weight: 600;
+  color: #ffffff;
+  text-align: center;
+  border-radius: 32rpx;
+}
+
+/* 找回密码操作 */
+.forgotPasswordActions {
+  flex-direction: row;
+  gap: 32rpx;
+  margin-top: 16rpx;
+}
+
+.backButton {
+  flex: 1;
+  border: 2rpx solid #d1d5db;
+  border-radius: 32rpx;
+  padding: 28rpx;
+  align-items: center;
+  justify-content: center;
+  height: 112rpx;
+}
+
+.backButtonText {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #1a202c;
+}
+
+.resetPasswordButton {
+  flex: 1;
+}
+
+/* 底部提示 */
+.bottomTips {
+  align-items: center;
+}
+
+.bottomTipsText {
+  font-size: 28rpx;
+  color: #4a5568;
+  text-align: center;
+  line-height: 40rpx;
+}
+
+.bottomTipsLink {
+  color: #1a202c;
+  font-weight: 600;
+}

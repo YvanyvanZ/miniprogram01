@@ -1,0 +1,33 @@
+<!-- pages/ai/history/index.wxml -->
+<view class="container">
+  <view class="header">
+    <view class="back-button" bindtap="onBack">
+      <text class="back-icon">←</text>
+    </view>
+    <text class="header-title">对话历史</text>
+    <view class="new-chat-button" bindtap="onNewChat">
+      <text class="new-chat-icon">+</text>
+    </view>
+  </view>
+
+  <scroll-view class="conversation-list" scroll-y>
+    <block wx:for="{{conversations}}" wx:key="id">
+      <view class="conversation-item" data-conversation="{{item}}" bindtap="onConversationTap">
+        <view class="conversation-content">
+          <text class="conversation-title">{{item.title}}</text>
+          <text class="conversation-preview">{{item.preview}}</text>
+          <text class="conversation-time">{{formatTime(item.timestamp)}}</text>
+        </view>
+        <view class="delete-button" data-id="{{item.id}}" bindtap="onDeleteConversation">
+          <text class="delete-icon">×</text>
+        </view>
+      </view>
+    </block>
+    
+    <view wx:if="{{conversations.length === 0}}" class="empty-state">
+      <text class="empty-icon">💬</text>
+      <text class="empty-text">还没有对话记录</text>
+      <text class="empty-subtext">开始和柔柔熊聊天吧</text>
+    </view>
+  </scroll-view>
+</view>

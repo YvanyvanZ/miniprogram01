@@ -1,0 +1,65 @@
+<!--pages/my-notes/index.wxml-->
+<view class="container">
+  <!-- 自定义头部 -->
+  <view class="custom-header">
+    <view class="header-left">
+      <view class="back-btn" bindtap="handleBackPress">
+        <text>← 返回</text>
+      </view>
+    </view>
+    <view class="header-title">
+      <text>我的笔记</text>
+    </view>
+    <view class="header-right">
+      <!-- 暂时移除搜索按钮 -->
+    </view>
+  </view>
+
+  <!-- 简化版：移除所有筛选标签，只保留简单的笔记列表 -->
+  <scroll-view class="notes-scroll" scroll-y="true" style="height: calc(100vh - 200rpx)">
+    
+    <!-- 加载状态 -->
+    <view class="loading-state" wx:if="{{loading}}">
+      <text>加载中...</text>
+    </view>
+
+    <!-- 空状态 -->
+    <view class="empty-state" wx:if="{{!loading && notes.length === 0}}">
+      <text class="empty-text">还没有任何笔记</text>
+      <text class="empty-tip">点击下方按钮开始记录</text>
+    </view>
+
+    <!-- 简化的笔记列表 -->
+    <view class="notes-list" wx:if="{{!loading && notes.length > 0}}">
+      <block wx:for="{{notes}}" wx:key="id">
+        <view class="note-item" bindtap="onViewNoteDetail" data-note="{{item}}">
+          <view class="note-header">
+            <text class="note-date">{{item.date}}</text>
+            <text class="note-ganzhi">{{item.ganzhi}}</text>
+          </view>
+          
+          <view class="note-content-preview">
+            <text class="content-text">{{item.content}}</text>
+          </view>
+          
+          <!-- 标签显示 -->
+          <view class="note-tags" wx:if="{{item.tags && item.tags.length > 0}}">
+            <block wx:for="{{item.tags}}" wx:for-item="tag" wx:key="*this">
+              <text class="tag">{{tag}}</text>
+            </block>
+          </view>
+          
+          <view class="note-time">
+            <text>{{formatTime(item.createTime)}}</text>
+          </view>
+        </view>
+      </block>
+    </view>
+
+  </scroll-view>
+
+  <!-- 添加按钮 -->
+  <view class="add-btn" bindtap="onCreateNote">
+    <text>+</text>
+  </view>
+</view>

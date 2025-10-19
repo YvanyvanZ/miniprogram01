@@ -1,0 +1,129 @@
+<!--pages/notes/detail/detail.wxml-->
+<!-- 在文件开头添加： -->
+<scroll-view class="page-scroll" scroll-y="true" style="height: 100vh;">
+
+<view class="container">
+  <!-- 头部 -->
+  <view class="header">
+    <view class="date-section">
+      <text class="date">{{date}}</text>
+      <text class="ganzhi">{{ganzhi}}</text>
+    </view>
+  </view>
+
+  <view class="divider"></view>
+
+  <!-- 笔记内容 -->
+  <view class="content-section">
+    <text class="section-title">我的观察与感悟</text>
+    <textarea 
+      class="note-input" 
+      placeholder="记录今天的能量观察、身体感受、情绪变化或任何有趣的发现..." 
+      placeholder-class="placeholder"
+      value="{{content}}"
+      bindinput="onInput"
+      maxlength="-1"
+      auto-height
+    ></textarea>
+  </view>
+
+  <view class="divider"></view>
+
+  <!-- 图片区域 -->
+  <view class="image-section">
+    <text class="section-title">添加图片</text>
+    <view class="image-add-btn" bindtap="addImage">
+      <text class="add-icon">+</text>
+      <text class="add-text">添加</text>
+    </view>
+    <text class="hint-text">点击添加图片</text>
+    
+    <!-- 图片预览 -->
+    <view class="image-preview-container" wx:if="{{images.length > 0}}">
+      <block wx:for="{{images}}" wx:key="*this">
+        <view class="image-preview-item">
+          <image src="{{item}}" mode="aspectFill" class="preview-image" bindtap="previewImage" data-index="{{index}}"></image>
+          <view class="delete-image-btn" bindtap="deleteImage" data-index="{{index}}">×</view>
+        </view>
+      </block>
+    </view>
+  </view>
+
+  <view class="divider"></view>
+
+  <!-- 标签区域 -->
+  <view class="tag-section">
+    <text class="section-title">添加标签</text>
+    <view class="tag-add-btn" bindtap="showTagSelector">
+      <text class="add-icon">+</text>
+      <text class="add-text">添加</text>
+    </view>
+    <text class="hint-text">点击添加标签，方便后续分类查找</text>
+    
+    <!-- 已选标签显示 -->
+    <view class="selected-tags-container" wx:if="{{selectedTags.length > 0}}">
+      <block wx:for="{{selectedTags}}" wx:key="*this">
+        <view class="selected-tag">{{item}}</view>
+      </block>
+    </view>
+  </view>
+
+  <view class="divider"></view>
+
+  <!-- 提示区域 -->
+  <view class="tips-section">
+    <text class="tips-title">记录小贴士</text>
+    <view class="tips-list">
+      <text class="tip-item">• 记录身体的感受变化</text>
+      <text class="tip-item">• 观察周围环境的能量流动</text>
+      <text class="tip-item">• 记录情绪和思维模式的变化</text>
+      <text class="tip-item">• 用图片捕捉当下的能量状态</text>
+    </view>
+  </view>
+
+  <!-- 底部按钮 -->
+  <view class="footer">
+    <view class="btn back-btn" bindtap="goBack">
+      <text>← 返回</text>
+    </view>
+    <view class="btn save-btn" bindtap="saveNote" wx:if="{{!isSaving}}">
+      <text>保存</text>
+    </view>
+    <view class="btn saving-btn" wx:else>
+      <text>保存中...</text>
+    </view>
+  </view>
+
+  <!-- 标签选择弹窗 -->
+  <view class="tag-modal" wx:if="{{showTagModal}}">
+    <view class="modal-mask" bindtap="hideTagSelector"></view>
+    <view class="modal-content">
+      <view class="modal-header">
+        <text class="modal-title">选择标签</text>
+        <view class="modal-close" bindtap="hideTagSelector">×</view>
+      </view>
+      
+      <view class="modal-body">
+        <view class="tags-grid">
+          <block wx:for="{{presetTags}}" wx:key="id">
+            <view 
+              class="tag-option {{item.selected ? 'selected' : ''}}" 
+              bindtap="onTagSelect" 
+              data-index="{{index}}"
+            >
+              {{item.name}}
+            </view>
+          </block>
+        </view>
+      </view>
+      
+      <view class="modal-footer">
+        <view class="confirm-btn" bindtap="hideTagSelector">
+          <text>完成</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+<!-- 在文件结尾（底部按钮之前）添加： -->
+</scroll-view>

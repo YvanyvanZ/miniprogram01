@@ -1,0 +1,274 @@
+<!-- 登录注册页面 -->
+<view class="container">
+  <!-- 自定义导航栏 -->
+  <view class="header">
+    <text class="headerTitle">糅一文化</text>
+  </view>
+
+  <scroll-view 
+    class="scrollView" 
+    scroll-y="true"
+    enable-back-to-top="true"
+  >
+    <view class="scrollContent">
+      <!-- Logo和标题区域 -->
+      <view class="logoSection">
+        <view class="logoContainer">
+          <view class="logoGradient">
+            <text class="logoText">糅一文化</text>
+          </view>
+        </view>
+        <text class="welcomeTitle">欢迎来到糅一文化</text>
+        <text class="welcomeSubtitle">探索身心灵成长，管理个人能量</text>
+      </view>
+
+      <!-- 认证表单区域 -->
+      <view class="authFormSection">
+        <!-- 模式切换Tab -->
+        <view class="modeTabs" wx:if="{{currentAuthMode !== 'forgot'}}">
+          <view 
+            class="tabButton {{currentAuthMode === 'login' ? 'tabActive' : 'tabInactive'}}"
+            bindtap="switchAuthMode"
+            data-mode="login"
+          >
+            <text class="tabText {{currentAuthMode === 'login' ? 'tabTextActive' : 'tabTextInactive'}}">登录</text>
+          </view>
+          <view 
+            class="tabButton {{currentAuthMode === 'register' ? 'tabActive' : 'tabInactive'}}"
+            bindtap="switchAuthMode"
+            data-mode="register"
+          >
+            <text class="tabText {{currentAuthMode === 'register' ? 'tabTextActive' : 'tabTextInactive'}}">注册</text>
+          </view>
+        </view>
+
+        <!-- 错误/成功消息 -->
+        <view 
+          class="messageContainer {{message.type === 'error' ? 'errorMessage' : 'successMessage'}}"
+          wx:if="{{message.text}}"
+        >
+          <text class="icon">{{message.type === 'error' ? '⚠️' : '✅'}}</text>
+          <text class="messageText {{message.type === 'error' ? 'errorText' : 'successText'}}">{{message.text}}</text>
+        </view>
+
+        <!-- 微信一键登录 -->
+        <view class="wechatLoginSection" wx:if="{{currentAuthMode === 'login'}}">
+          <button 
+            class="wechatLoginButton"
+            open-type="getPhoneNumber"
+            bindgetphonenumber="onGetPhoneNumber"
+          >
+            <text class="wechatIcon">💚</text>
+            <text class="wechatLoginText">微信一键登录</text>
+          </button>
+          
+          <view class="divider">
+            <text class="dividerText">或</text>
+          </view>
+        </view>
+
+        <!-- 手机登录表单 -->
+        <view class="formContainer" wx:if="{{currentAuthMode === 'login' && !useWechatLogin}}">
+          <view class="inputGroup">
+            <text class="inputLabel">手机号</text>
+            <view class="inputWrapper">
+              <text class="icon">📱</text>
+              <input 
+                class="textInput"
+                placeholder="请输入手机号"
+                placeholder-class="placeholder"
+                value="{{loginPhone}}"
+                bindinput="onInput"
+                data-field="loginPhone"
+                type="number"
+                maxlength="11"
+              />
+            </view>
+          </view>
+
+          <view class="inputGroup">
+            <text class="inputLabel">密码</text>
+            <view class="inputWrapper">
+              <text class="icon">🔒</text>
+              <input 
+                class="textInput"
+                placeholder="请输入密码"
+                placeholder-class="placeholder"
+                value="{{loginPassword}}"
+                bindinput="onInput"
+                data-field="loginPassword"
+                password="{{!isLoginPasswordVisible}}"
+              />
+              <view class="passwordToggleButton" bindtap="togglePasswordVisibility" data-type="login">
+                <text class="icon">{{isLoginPasswordVisible ? '👁️' : '👁️‍🗨️'}}</text>
+              </view>
+            </view>
+          </view>
+
+          <view class="forgotPasswordSection">
+            <text class="forgotPasswordText" bindtap="switchAuthMode" data-mode="forgot">忘记密码？</text>
+          </view>
+
+          <view class="submitButton {{isLoading ? 'submitButtonDisabled' : ''}}" bindtap="handleLoginSubmit">
+            <text class="submitButtonText">{{isLoading ? '登录中...' : '登录'}}</text>
+          </view>
+        </view>
+
+        <!-- 注册表单 -->
+        <view class="formContainer" wx:if="{{currentAuthMode === 'register'}}">
+          <view class="inputGroup">
+            <text class="inputLabel">手机号</text>
+            <view class="inputWrapper">
+              <text class="icon">📱</text>
+              <input 
+                class="textInput"
+                placeholder="请输入手机号"
+                placeholder-class="placeholder"
+                value="{{registerPhone}}"
+                bindinput="onInput"
+                data-field="registerPhone"
+                type="number"
+                maxlength="11"
+              />
+            </view>
+          </view>
+
+          <view class="inputGroup">
+            <text class="inputLabel">验证码</text>
+            <view class="verificationInputWrapper">
+              <view class="verificationInputContainer">
+                <text class="icon">🔐</text>
+                <input 
+                  class="textInput"
+                  placeholder="请输入验证码"
+                  placeholder-class="placeholder"
+                  value="{{verificationCode}}"
+                  bindinput="onInput"
+                  data-field="verificationCode"
+                  type="number"
+                  maxlength="6"
+                />
+              </view>
+              <view 
+                class="getCodeButton {{registerCodeCountdown > 0 ? 'getCodeButtonDisabled' : ''}}"
+                bindtap="handleGetVerificationCode"
+              >
+                <text class="getCodeButtonText">
+                  {{registerCodeCountdown > 0 ? registerCodeCountdown + '秒后重发' : '获取验证码'}}
+                </text>
+              </view>
+            </view>
+          </view>
+
+          <view class="inputGroup">
+            <text class="inputLabel">设置密码</text>
+            <view class="inputWrapper">
+              <text class="icon">🔒</text>
+              <input 
+                class="textInput"
+                placeholder="请设置登录密码"
+                placeholder-class="placeholder"
+                value="{{registerPassword}}"
+                bindinput="onInput"
+                data-field="registerPassword"
+                password="{{!isRegisterPasswordVisible}}"
+              />
+              <view class="passwordToggleButton" bindtap="togglePasswordVisibility" data-type="register">
+                <text class="icon">{{isRegisterPasswordVisible ? '👁️' : '👁️‍🗨️'}}</text>
+              </view>
+            </view>
+          </view>
+
+          <view class="submitButton {{isLoading ? 'submitButtonDisabled' : ''}}" bindtap="handleRegisterSubmit">
+            <text class="submitButtonText">{{isLoading ? '注册中...' : '注册'}}</text>
+          </view>
+        </view>
+
+        <!-- 找回密码表单 -->
+        <view class="formContainer" wx:if="{{currentAuthMode === 'forgot'}}">
+          <view class="inputGroup">
+            <text class="inputLabel">手机号</text>
+            <view class="inputWrapper">
+              <text class="icon">📱</text>
+              <input 
+                class="textInput"
+                placeholder="请输入手机号"
+                placeholder-class="placeholder"
+                value="{{forgotPhone}}"
+                bindinput="onInput"
+                data-field="forgotPhone"
+                type="number"
+                maxlength="11"
+              />
+            </view>
+          </view>
+
+          <view class="inputGroup">
+            <text class="inputLabel">验证码</text>
+            <view class="verificationInputWrapper">
+              <view class="verificationInputContainer">
+                <text class="icon">🔐</text>
+                <input 
+                  class="textInput"
+                  placeholder="请输入验证码"
+                  placeholder-class="placeholder"
+                  value="{{forgotVerificationCode}}"
+                  bindinput="onInput"
+                  data-field="forgotVerificationCode"
+                  type="number"
+                  maxlength="6"
+                />
+              </view>
+              <view 
+                class="getCodeButton {{forgotCodeCountdown > 0 ? 'getCodeButtonDisabled' : ''}}"
+                bindtap="handleGetForgotCode"
+              >
+                <text class="getCodeButtonText">
+                  {{forgotCodeCountdown > 0 ? forgotCodeCountdown + '秒后重发' : '获取验证码'}}
+                </text>
+              </view>
+            </view>
+          </view>
+
+          <view class="inputGroup">
+            <text class="inputLabel">新密码</text>
+            <view class="inputWrapper">
+              <text class="icon">🔒</text>
+              <input 
+                class="textInput"
+                placeholder="请输入新密码"
+                placeholder-class="placeholder"
+                value="{{newPassword}}"
+                bindinput="onInput"
+                data-field="newPassword"
+                password="{{!isNewPasswordVisible}}"
+              />
+              <view class="passwordToggleButton" bindtap="togglePasswordVisibility" data-type="new">
+                <text class="icon">{{isNewPasswordVisible ? '👁️' : '👁️‍🗨️'}}</text>
+              </view>
+            </view>
+          </view>
+
+          <view class="forgotPasswordActions">
+            <view class="backButton" bindtap="switchAuthMode" data-mode="login">
+              <text class="backButtonText">返回</text>
+            </view>
+            <view class="submitButton {{isLoading ? 'submitButtonDisabled' : ''}}" bindtap="handleForgotPasswordSubmit">
+              <text class="submitButtonText">{{isLoading ? '重置中...' : '重置密码'}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <!-- 底部提示 -->
+      <view class="bottomTips">
+        <text class="bottomTipsText">
+          登录即表示同意
+          <text class="bottomTipsLink">《用户协议》</text>
+          和
+          <text class="bottomTipsLink">《隐私政策》</text>
+        </text>
+      </view>
+    </view>
+  </scroll-view>
+</view>

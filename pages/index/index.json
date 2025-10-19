@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "星图大厅",
+  "navigationBarBackgroundColor": "#0a0a1a",
+  "navigationBarTextStyle": "white",
+  "disableScroll": true,
+  "navigationStyle": "default",
+  "enablePullDownRefresh": false
+}

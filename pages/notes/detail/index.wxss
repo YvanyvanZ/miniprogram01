@@ -1,0 +1,322 @@
+/* pages/notes/detail/detail.wxss */
+.container {
+  padding: 30rpx;
+  min-height: 100vh;
+  background: #f8f9fa;
+}
+
+/* 头部样式 */
+.header {
+  text-align: center;
+  margin-bottom: 20rpx;
+}
+
+.date-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.date {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 8rpx;
+}
+
+.ganzhi {
+  font-size: 28rpx;
+  color: #666;
+}
+
+/* 分割线 */
+.divider {
+  height: 1rpx;
+  background: #e0e0e0;
+  margin: 30rpx 0;
+}
+
+/* 内容区域 */
+.content-section {
+  margin-bottom: 30rpx;
+}
+
+.section-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+  display: block;
+  margin-bottom: 20rpx;
+}
+
+.note-input {
+  width: 100%;
+  min-height: 200rpx;
+  padding: 20rpx;
+  background: white;
+  border-radius: 12rpx;
+  font-size: 28rpx;
+  line-height: 1.6;
+  box-sizing: border-box;
+}
+
+.placeholder {
+  color: #999;
+}
+
+/* 图片区域 */
+.image-add-btn {
+  width: 200rpx;
+  height: 80rpx;
+  border: 2rpx dashed #ddd;
+  border-radius: 12rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f8f9fa;
+  margin-bottom: 10rpx;
+}
+
+.hint-text {
+  font-size: 24rpx;
+  color: #999;
+  display: block;
+  margin-bottom: 15rpx;
+}
+
+.image-preview-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20rpx;
+  margin-top: 20rpx;
+}
+
+.image-preview-item {
+  width: 150rpx;
+  height: 150rpx;
+  position: relative;
+  border-radius: 8rpx;
+  overflow: hidden;
+}
+
+.preview-image {
+  width: 100%;
+  height: 100%;
+}
+
+.delete-image-btn {
+  position: absolute;
+  top: -10rpx;
+  right: -10rpx;
+  width: 40rpx;
+  height: 40rpx;
+  background: #ff4757;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24rpx;
+  font-weight: bold;
+}
+
+/* 标签区域 */
+.tag-add-btn {
+  width: 200rpx;
+  height: 80rpx;
+  border: 2rpx dashed #ddd;
+  border-radius: 12rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f8f9fa;
+  margin-bottom: 10rpx;
+}
+
+.selected-tags-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15rpx;
+  margin-top: 20rpx;
+}
+
+.selected-tag {
+  padding: 12rpx 24rpx;
+  background: #4CAF50;
+  color: white;
+  border-radius: 20rpx;
+  font-size: 24rpx;
+}
+
+/* 提示区域 */
+.tips-section {
+  background: white;
+  padding: 30rpx;
+  border-radius: 12rpx;
+  margin-bottom: 120rpx;
+}
+
+.tips-title {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20rpx;
+  display: block;
+}
+
+.tips-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15rpx;
+}
+
+.tip-item {
+  font-size: 26rpx;
+  color: #666;
+  line-height: 1.5;
+}
+
+/* 底部按钮 */
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100rpx;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 30rpx;
+  border-top: 1rpx solid #e0e0e0;
+  box-sizing: border-box;
+}
+
+.btn {
+  padding: 20rpx 40rpx;
+  border-radius: 25rpx;
+  font-size: 28rpx;
+  font-weight: bold;
+}
+
+.back-btn {
+  background: #f8f9fa;
+  color: #333;
+  border: 1rpx solid #ddd;
+}
+
+.save-btn {
+  background: #4CAF50;
+  color: white;
+}
+
+.saving-btn {
+  background: #cccccc;
+  color: white;
+}
+
+/* 标签弹窗样式 */
+.tag-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
+}
+
+.modal-mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: white;
+  border-radius: 20rpx 20rpx 0 0;
+  max-height: 70vh;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30rpx;
+  border-bottom: 1rpx solid #f0f0f0;
+}
+
+.modal-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+.modal-close {
+  font-size: 40rpx;
+  color: #999;
+  width: 50rpx;
+  height: 50rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-body {
+  padding: 30rpx;
+  max-height: 400rpx;
+  overflow-y: auto;
+}
+
+.tags-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20rpx;
+}
+
+.tag-option {
+  padding: 20rpx 30rpx;
+  background: #f8f9fa;
+  border: 1rpx solid #e0e0e0;
+  border-radius: 25rpx;
+  font-size: 26rpx;
+  color: #333;
+}
+
+.tag-option.selected {
+  background: #4CAF50;
+  color: white;
+  border-color: #4CAF50;
+}
+
+.modal-footer {
+  padding: 30rpx;
+  border-top: 1rpx solid #f0f0f0;
+}
+
+.confirm-btn {
+  background: #4CAF50;
+  color: white;
+  padding: 25rpx;
+  border-radius: 25rpx;
+  text-align: center;
+  font-size: 28rpx;
+  font-weight: bold;
+}
+
+/* 通用样式 */
+.add-icon {
+  font-size: 32rpx;
+  font-weight: bold;
+  margin-right: 10rpx;
+}
+
+.add-text {
+  font-size: 28rpx;
+}

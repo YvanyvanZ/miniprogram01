@@ -1,0 +1,26 @@
+<!--pages/notes/index.wxml-->
+<view class="container">
+  <view class="header">
+    <view class="back-button" bindtap="handleBackPress">
+      <text>←</text>
+    </view>
+    <text class="title">我的笔记</text>
+    <view class="create-button" bindtap="handleCreateNote">
+      <text>新建</text>
+    </view>
+  </view>
+
+  <view class="notes-list">
+    <view 
+      class="note-card"
+      wx:for="{{notesData}}"
+      wx:key="id"
+      data-id="{{item.id}}"
+      bindtap="handleNotePress"
+    >
+      <text class="note-title">{{item.title}}</text>
+      <text class="note-date">{{item.date}} {{item.ganzhi}}</text>
+      <text class="note-content">{{item.content}}</text>
+    </view>
+  </view>
+</view>

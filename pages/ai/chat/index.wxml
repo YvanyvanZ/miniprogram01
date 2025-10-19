@@ -1,0 +1,93 @@
+<!-- pages/ai/chat/index.wxml -->
+<view class="container">
+  <!-- 顶部导航栏 -->
+  <view class="header">
+    <view class="back-button" bindtap="handleBack">
+      <text class="back-icon">←</text>
+    </view>
+    
+    <view class="title-container">
+      <text class="header-title">{{currentTitle}}</text>
+    </view>
+    
+    <view class="history-button" bindtap="handleHistory">
+      <text class="history-icon">📜</text>
+    </view>
+  </view>
+
+  <!-- 聊天内容区域 -->
+  <scroll-view 
+    class="chat-container" 
+    scroll-y 
+    scroll-top="{{scrollTop}}"
+    scroll-with-animation="{{true}}"
+  >
+    <view class="chat-content">
+      <!-- 欢迎消息（仅在新对话时显示） -->
+      <view class="welcome-container" wx:if="{{messages.length === 0}}">
+        <image class="welcome-avatar" src="/images/rourou-avatar.png" mode="aspectFit"></image>
+        <text class="welcome-title">你好，我是柔柔熊</text>
+        <text class="welcome-subtitle">我在这里陪伴你，倾听你的感受</text>
+      </view>
+
+      <!-- 对话消息列表 -->
+      <block wx:for="{{messages}}" wx:key="id">
+        <!-- 用户消息 -->
+        <view class="user-message-container" wx:if="{{item.sender === 'user'}}">
+          <view class="user-message-bubble">
+            <text class="user-message-text">{{item.text}}</text>
+          </view>
+        </view>
+
+        <!-- AI消息 -->
+        <view class="ai-message-container" wx:if="{{item.sender === 'ai'}}">
+          <view class="ai-avatar">
+            <image class="ai-avatar-img" src="/images/rourou-avatar.png" mode="aspectFit"></image>
+          </view>
+          <view class="ai-message-bubble">
+            <text class="ai-message-text">{{item.text}}</text>
+          </view>
+        </view>
+      </block>
+
+      <!-- AI正在思考指示器 -->
+      <view class="typing-indicator-container" wx:if="{{isTyping}}">
+        <view class="typing-avatar">
+          <image class="typing-avatar-img" src="/images/rourou-avatar.png" mode="aspectFit"></image>
+        </view>
+        <view class="typing-dots-container">
+          <view class="typing-dot typing-dot1"></view>
+          <view class="typing-dot typing-dot2"></view>
+          <view class="typing-dot typing-dot3"></view>
+        </view>
+        <text class="typing-text">柔柔熊正在感受中...</text>
+      </view>
+    </view>
+  </scroll-view>
+
+  <!-- 底部输入区域 -->
+  <view class="input-area">
+    <view class="input-wrapper">
+      <textarea 
+        class="text-input"
+        placeholder="分享你此刻的感受..."
+        placeholder-class="placeholder"
+        value="{{messageText}}"
+        bindinput="onInputChange"
+        bindkeyboardheightchange="onKeyboardHeightChange"
+        bindconfirm="handleInputSend"
+        maxlength="500"
+        show-confirm-bar="{{false}}"
+        auto-height
+        fixed
+        cursor-spacing="20"
+      />
+      <view 
+        class="send-button {{!messageText.trim() ? 'send-button-disabled' : ''}}"
+        bindtap="handleInputSend"
+      >
+        <text class="send-button-icon">➤</text>
+      </view>
+    </view>
+  </view>
+</view>

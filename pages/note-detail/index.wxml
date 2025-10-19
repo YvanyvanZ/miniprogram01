@@ -1,0 +1,68 @@
+<!--pages/note-detail/note-detail.wxml-->
+<scroll-view class="container-scroll" scroll-y="true">
+  <view class="container">
+    <!-- 头部信息 -->
+    <view class="header">
+      <view class="date-section">
+        <text class="date">{{noteData.date}}</text>
+        <text class="ganzhi">{{noteData.ganzhi}}</text>
+      </view>
+    </view>
+
+    <view class="divider"></view>
+
+    <!-- 笔记内容 -->
+    <view class="content-section">
+      <text class="section-title">我的观察与感悟</text>
+      <view class="content-display">
+        <text class="content-text">{{noteData.content}}</text>
+      </view>
+    </view>
+
+    <view class="divider"></view>
+
+    <!-- 图片展示 -->
+    <view class="image-section" wx:if="{{noteData.images && noteData.images.length > 0}}">
+      <text class="section-title">相关图片</text>
+      <view class="image-grid">
+        <block wx:for="{{noteData.images}}" wx:key="*this">
+          <view class="image-item">
+            <image src="{{item}}" mode="aspectFill" class="display-image" bindtap="previewImage" data-index="{{index}}"></image>
+          </view>
+        </block>
+      </view>
+    </view>
+
+    <view class="divider" wx:if="{{noteData.images && noteData.images.length > 0}}"></view>
+
+    <!-- 标签展示 -->
+    <view class="tag-section" wx:if="{{noteData.tags && noteData.tags.length > 0}}">
+      <text class="section-title">标签</text>
+      <view class="tags-display">
+        <block wx:for="{{noteData.tags}}" wx:key="*this">
+          <view class="display-tag">{{item}}</view>
+        </block>
+      </view>
+    </view>
+
+    <view class="divider" wx:if="{{noteData.tags && noteData.tags.length > 0}}"></view>
+
+    <!-- 创建时间 -->
+    <view class="info-section">
+      <text class="info-text">创建时间: {{formatTime(noteData.createTime)}}</text>
+    </view>
+
+    <!-- 底部留白 -->
+    <view class="bottom-space"></view>
+  </view>
+</scroll-view>
+
+<!-- 底部操作栏 -->
+<view class="footer">
+  <view class="btn back-btn" bindtap="goBack">
+    <text>← 返回</text>
+  </view>
+  <view class="btn edit-btn" bindtap="editNote">
+    <text>编辑</text>
+  </view>
+</view>

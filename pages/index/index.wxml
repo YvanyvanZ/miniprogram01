@@ -1,0 +1,76 @@
+<!-- 星图大厅 - 宇宙呼吸感版本 -->
+
+
+
+<view class="universe-hall">
+  <!-- 柔柔熊欢迎区 -->
+  <view class="welcome-section">
+    <image class="rourou-avatar" src="/images/rouonewhite.png" mode="aspectFit"></image>
+    <view class="welcome-text">
+      <text class="welcome-main">人生云图 RouoneLife </text>
+      <text class="welcome-sub">欢迎登星。。所有宏大的洞察，都始于微小的观察。</text>
+    </view>
+  </view>
+
+  <!-- 动态星空背景容器 -->
+  <view class="stars-container">
+    <view class="star star-1"></view>
+    <view class="star star-2"></view>
+    <view class="star star-3"></view>
+    <view class="star star-4"></view>
+    <view class="star star-5"></view>
+    <view class="star star-6"></view>
+    <view class="star star-7"></view>
+    <view class="star star-8"></view>
+    <view class="star star-9"></view>
+    <view class="star star-10"></view>
+    <view class="star star-11"></view>
+  </view>
+
+  <!-- 塔罗牌式导航 -->
+  <view class="cards-section">
+    <view class="cards-container">
+      <swiper 
+        class="cards-swiper" 
+        indicator-dots="{{false}}" 
+        circular="{{true}}"
+        previous-margin="80rpx"
+        next-margin="120rpx"
+        display-multiple-items="1.2"
+        bindchange="onCardChange">
+        
+        <swiper-item wx:for="{{toolCards}}" wx:key="id" class="swiper-item">
+          <view class="tool-card {{item.status}}" bindtap="onCardTap" data-index="{{index}}">
+            <!-- 开发中标签 -->
+            <view class="dev-tag" wx:if="{{item.status === 'developing'}}">即将开启</view>
+            <view class="dev-tag future" wx:if="{{item.status === 'future'}}">未来已来..</view>
+            
+            <!-- 修复：图片和文字区域 -->
+            <view class="card-media">
+                <image wx:if="{{item.useImage}}" src="{{item.poster}}" class="card-poster" mode="aspectFill" lazy-load="true"></image>
+                <text wx:else class="card-emoji">{{item.icon}}</text>
+              </view>
+              
+              <text class="card-title">{{item.title}}</text>
+              <text class="card-desc">{{item.description}}</text>
+            
+            
+        
+            <!-- 当前可用功能的提示 -->
+            <view class="available-badge" wx:if="{{item.available}}">立即体验</view>
+          </view>
+        </swiper-item>
+        
+      </swiper>
+    </view>
+  </view>
+
+  <!-- 卡片指示器 -->
+  <view class="cards-indicator">
+    <view class="indicator-dots">
+      <block wx:for="{{toolCards}}" wx:for-index="index" wx:key="id">
+        <view class="dot {{currentCardIndex === index ? 'active' : ''}}"></view>
+      </block>
+    </view>
+  </view>
+</view>

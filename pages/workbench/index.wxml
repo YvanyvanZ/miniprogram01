@@ -1,0 +1,155 @@
+<!-- miniprogram/pages/energy_workbench/index.wxml -->
+<!-- 自定义导航栏 -->
+<view class="custom-nav">
+  <view class="nav-left">
+    <view class="back-home-btn" bindtap="goToHome">
+      <text class="back-icon"></text>
+      <text class="back-text">＜  首页</text>
+    </view>
+  </view>
+  <text class="nav-title"></text>
+</view>
+
+<!-- 你的原有首页内容 -->
+<view class="container">
+  <!-- 顶部导航栏 -->
+  
+
+  <!-- 主要内容区域 - 可滚动 -->
+  <scroll-view 
+    class="mainContent" 
+    scroll-y="true"
+    refresher-enabled="true"
+    refresher-triggered="{{isRefreshing}}"
+    bindrefresherrefresh="handleRefresh"
+  >
+    <!-- 今日能量侦探工作台标题 -->
+    <view class="workbenchHeader">
+      <text class="workbenchTitle">今日能量侦探工作台</text>
+      <text class="workbenchSubtitle">和柔柔熊一起观察，积累你的星光吧！ </text>
+    </view>
+
+    <!-- 当日干支谜题卡片 -->
+    <view class="dailyPuzzleCard">
+      <view class="dateDisplay">
+        <view class="dateInfo">
+          <text class="icon">📅</text>
+          <text class="currentDate">{{currentDate}}</text>
+        </view>
+        <view class="ganzhiBadge">
+          <text class="currentGanzhi">{{currentGanzhi}}</text>
+        </view>
+      </view>
+      
+      <view class="puzzleContent">
+        <text class="puzzleTitle">今日能量谜题</text>
+        <view class="puzzleTextContainer">
+          <text class="puzzleText">{{puzzleText}}</text>
+          <view class="puzzleHint">
+            <text class="icon">💡</text>
+            <text class="puzzleHintText">{{thinkingDirection}}</text>
+          </view>
+        </view>
+      </view>
+      
+
+      <!-- 记录笔记按钮 -->
+      <view class="recordNoteButton" bindtap="handleRecordNotePress">
+        <view class="recordNoteButtonGradient">
+          <text class="icon">✏️</text>
+          <text class="recordNoteButtonText">记录观察笔记</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 谜题答案区域（23:30后显示） -->
+    <view class="answerSection" wx:if="{{showAnswerSection}}">
+      <view class="answerHeader">
+        <text class="answerTitle">专业解析</text>
+        <text class="answerTime">23:30 已公布</text>
+      </view>
+      <view class="answerContent">
+        <text class="answerText">
+          <!-- 这里可以后期接入云函数生成更详细的解析 -->
+          今日{{currentGanzhi}}的能量解析已公布，请结合您白天的观察进行对照学习。
+        </text>
+        <view class="energyTraitsGrid">
+          <view class="energyTraitCard">
+            <text class="energyTraitTitle">{{currentGanzhi[0]}}特性</text>
+            <text class="energyTraitDescription">生长、开创、领导</text>
+          </view>
+          <view class="energyTraitCard">
+            <text class="energyTraitTitle">{{currentGanzhi[1]}}特性</text>
+            <text class="energyTraitDescription">智慧、潜能、变化</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 功能入口区域 -->
+    <view class="functionSection">
+      <text class="functionTitle">探索更多</text>
+      
+      <!-- 课程入口 -->
+      <view class="functionButton" bindtap="handleCoursePress">
+        <view class="functionButtonGradient">
+          <view class="functionIconContainer">
+            <text class="icon">🎓</text>
+          </view>
+          <view class="functionTextContainer">
+            <text class="functionButtonTitle">星光教室</text>
+            <text class="functionButtonSubtitle">学习干支能量的奥秘</text>
+          </view>
+          <text class="icon">></text>
+        </view>
+      </view>
+
+      <!-- AI能量教练入口 -->
+      <view class="functionButton" bindtap="handleAICoachPress">
+        <view class="functionButtonGradient">
+          <view class="functionIconContainer">
+            <image class="icon-image" src="/" mode="aspectFit"></image>
+          </view>
+          <view class="functionTextContainer">
+            <text class="functionButtonTitle">柔柔熊AI-解惑</text>
+            <text class="functionButtonSubtitle">个性化能量咨询</text>
+          </view>
+          <text class="icon">></text>
+        </view>
+      </view>
+
+      <!-- 历史谜题入口 -->
+      <view class="functionButton" bindtap="handleHistoryPress">
+        <view class="functionButtonGradient">
+          <view class="functionIconContainer">
+            <text class="icon">📚</text>
+          </view>
+          <view class="functionTextContainer">
+            <text class="functionButtonTitle">查看全部笔记</text>
+            <text class="functionButtonSubtitle">每篇笔记，都是一束星光！</text>
+          </view>
+          <text class="icon">></text>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+
+  <!-- AI教练浮窗 -->
+  <view class="ai-coach-float {{aiCoach.isMinimized ? 'minimized' : ''}}">
+    <!-- 教练图标 -->
+    <view class="coach-icon-wrapper" bindtap="toggleCoachChat">
+      <image class="coach-icon-image" src="/images/rourou-avatar.png" mode="aspectFit">╹_╹</image>
+      <view class="coach-pulse" wx:if="{{aiCoach.hasNewMessage}}"></view>
+    </view>
+    
+    <!-- 聊天对话框 -->
+    <view class="chat-bubble {{aiCoach.isVisible ? 'visible' : 'hidden'}}">
+      <view class="bubble-arrow"></view>
+      <text class="coach-message">{{aiCoach.currentMessage}}</text>
+      <view class="coach-actions">
+        <button class="btn-action positive" bindtap="handleCoachResponse" data-response="positive">好的</button>
+        <button class="btn-action negative" bindtap="handleCoachResponse" data-response="negative">稍后</button>
+      </view>
+    </view>
+  </view>
+</view>

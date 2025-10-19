@@ -1,0 +1,56 @@
+{
+  "pages": [
+    
+    "pages/index/index",
+    "pages/workbench/index",
+    "pages/observation-answer/index",
+    "pages/observation-question/index",
+    "pages/login/index",
+    "pages/ai/chat/index",
+    "pages/ai/history/index",
+    "pages/ai-chat/index",
+    "pages/notes/index",
+    "pages/notes/detail/index",
+    "pages/note-detail/index",
+   
+    "pages/profile/index",
+    "pages/example/example",
+    
+    
+   
+    "pages/my-notes/index"
+  ],
+  "window": {
+    "navigationBarTitleText": "人生云图",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#0a0a1a",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#0a0a1a",
+    "enablePullDownRefresh": false
+  },
+  "tabBar": {
+    "custom": false,
+    "color": "#8E8E93",
+    "selectedColor": "#007AFF",
+    "backgroundColor": "#FFFFFF",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "images/tabbar/home.png",
+        "selectedIconPath": "images/tabbar/home-active.png",
+        "text": "星图大厅"
+      },
+      {
+        "pagePath": "pages/profile/index",
+        "iconPath": "images/tabbar/profile.png",
+        "selectedIconPath": "images/tabbar/profile-active.png",
+        "text": "我的"
+      }
+    ],
+    "position": "bottom"
+  },
+  "debug": true,
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

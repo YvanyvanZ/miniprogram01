@@ -1,0 +1,8 @@
+{
+  "usingComponents": {},
+  "navigationBarTitleText": "柔柔熊 AI助手",
+  "navigationBarBackgroundColor": "#1a365d",
+  "navigationBarTextStyle": "white",
+  "backgroundColor": "#1a365d",
+  "enablePullDownRefresh": false
+}
